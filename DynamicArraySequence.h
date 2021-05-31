@@ -149,6 +149,45 @@ public:
         dynamicArray.Resize(dynamicArray.GetLength() - 1);
         return item;
     }
+
+    template<class U>
+    ArraySequence<U> *Map(U (*func)(T item)) {
+        auto *res = new ArraySequence<U>;
+        auto *arr = dynamicArray.Map(func);
+        for (int i = 0;i < arr->GetLength();i++) {
+            res->Append((*arr)[i]);
+        }
+        delete arr;
+        return res;
+    }
+
+    template<class U>
+    ArraySequence<U> *Map(U (*func)(T item1, T item2), T item) {
+        auto *res = new ArraySequence<U>;
+        res->dynamicArray = *dynamicArray.Map(func, item);
+        return res;
+    }
+
+    template<class U>
+    U Reduce(U (*func)(T item1, T item2)) {
+        return dynamicArray.Reduce(func);
+    }
+
+    ArraySequence<T>* Where(bool(*func)(T))
+    {
+        ArraySequence<T> *temp=new ArraySequence<T>();
+        T data_t;
+        int len=GetLength();
+        for(int i=0;i<len;i++)
+        {
+            data_t=Get(i);
+            if(func(data_t))
+            {
+                temp->Append(data_t);
+            }
+        }
+        return temp;
+    }
 };
 template<class T>
 std::ostream &operator<<(std::ostream &cout, ArraySequence<T>arraySequence) {

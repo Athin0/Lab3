@@ -66,6 +66,39 @@ public:
     void Set(int index, T value);
 
     void Resize(int newSize);
+
+    template<class U>
+    DynamicArray<U>* Map(U (*func)(T item)) {
+        auto *res = new DynamicArray<U>;
+        res->Resize(size);
+        for (int i = 0; i <size; i++) {
+            (*res)[i] = func(arr[i]);
+        }
+
+        return res;
+    }
+
+    template<class U>
+    DynamicArray<U>* Map(U (*func)(T item1, T item2), T item) {
+        auto *res = new DynamicArray<U>;
+        res->Resize(size);
+        for (int i = 0; i < size; i++) {
+            (*res)[i] = func(arr[i], item);
+        }
+        return res;
+    }
+
+    template<class U>
+    T Reduce(U (*func)(T item1, T item2)) {
+        if (size < 2) throw IndexOutOfRange(size, 1);
+
+        auto res = func(arr[0], arr[1]);
+        for (int i = 2; i < size; i++) {
+            res = func(res, arr[i]);
+        }
+        return res;
+    }
+
 };
 
 template<class T>
@@ -131,7 +164,7 @@ void DynamicArray<T>::Set(int index, T value) {               //Задать э�
 
 
 template<class T>
-void DynamicArray<T>::Resize(int newSize) {   //TODO переделай
+void DynamicArray<T>::Resize(int newSize) {
     if (newSize < 0)
         throw IndexOutOfRange(); //исключение выхода за массив
     if (size == newSize) return;               //длина не изменилась

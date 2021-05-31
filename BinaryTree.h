@@ -16,8 +16,7 @@ private:
         int height = 1;
         Node *left= nullptr;
         Node *right= nullptr;
-Node();
-        Node(T data): data(data){};
+        explicit Node(T data): data(data){};
 
         int getDelta() {
             auto h1 = left == nullptr ? 0 : left->height;
@@ -278,7 +277,7 @@ public:
         root = new Node(item);
     }
 
-    BinaryTree(T *arr,int len) {
+    BinaryTree(T *arr,int len) {             //TODO самый важный конструкор
         root = nullptr;
         for(int i = 0; i < len; i++)
             Insert(i[arr]);
@@ -330,7 +329,61 @@ public:
                 resStr+=", ";
         }
         resStr+="}";
+        delete resArr;
         return resStr;
+    }
+
+    BinaryTree* Map(T(*func)(T, T), T elem)
+    {
+        ArraySequence<T> arr;
+        In_Str(root,&arr,1,2,3);
+        auto *resArr = arr.Map(func, elem);
+        auto* res=new BinaryTree<T>(*resArr);
+        delete resArr;
+        return res;
+    }
+
+    BinaryTree* Map(T(*func)(T))
+    {
+        ArraySequence<T> arr;
+        In_Str(root,&arr,1,2,3);
+        auto *resArr = arr.Map(func);
+        auto* res=new BinaryTree<T>(*resArr);
+        delete resArr;
+        return res;
+    }
+
+    BinaryTree* Map(T(*func)(void))
+    {
+        ArraySequence<T> arr;
+        In_Str(root,&arr,1,2,3);
+        arr.Map(func);
+        auto* res=new BinaryTree<T>(arr);
+        return res;
+    }
+
+    BinaryTree* Where(bool(*func)(T))
+    {
+        ArraySequence<T> arr;
+        In_Str(root,&arr,1,2,3);
+        auto *resArr = arr.Where(func);
+        auto* res = new BinaryTree<T>(*resArr);
+        delete resArr;
+        return res;
+    }
+
+    T Reduce(T(*func)(T))
+    {
+        ArraySequence<T> arr;
+        In_Str(root,&arr,1,2,3);
+        T res = arr.Reduce(func);
+        return res;
+    }
+
+    ArraySequence<T>* GetValues(){
+        auto *arrRes= new ArraySequence<T>;
+        In_Str(root, arrRes, 1, 2, 3);
+        return arrRes;
     }
 };
 

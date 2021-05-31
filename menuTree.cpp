@@ -7,6 +7,7 @@
 #include "BinaryTree.h"
 #include "DynamicArraySequence.h"
 #include "baseFunc.h"
+#include "Test.h"
 
 using namespace std;
 
@@ -477,7 +478,7 @@ void testFuncBinaryTree() {
     if (count <= 0)
         return;
 
-//    test(count, 1); TODO переделать
+   test(count, 1);
 
     cout << "Хотите запустить тестирование ещё раз?\n"
             "\t0 - нет\n"

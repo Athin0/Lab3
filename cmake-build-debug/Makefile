@@ -169,6 +169,33 @@ BinaryTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/BinaryTree.cpp.s
 .PHONY : BinaryTree.cpp.s
 
+Test.o: Test.cpp.o
+
+.PHONY : Test.o
+
+# target to build an object file
+Test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/Test.cpp.o
+.PHONY : Test.cpp.o
+
+Test.i: Test.cpp.i
+
+.PHONY : Test.i
+
+# target to preprocess a source file
+Test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/Test.cpp.i
+.PHONY : Test.cpp.i
+
+Test.s: Test.cpp.s
+
+.PHONY : Test.s
+
+# target to generate assembly for a file
+Test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/Test.cpp.s
+.PHONY : Test.cpp.s
+
 baseFunc.o: baseFunc.cpp.o
 
 .PHONY : baseFunc.o
@@ -262,6 +289,9 @@ help:
 	@echo "... BinaryTree.o"
 	@echo "... BinaryTree.i"
 	@echo "... BinaryTree.s"
+	@echo "... Test.o"
+	@echo "... Test.i"
+	@echo "... Test.s"
 	@echo "... baseFunc.o"
 	@echo "... baseFunc.i"
 	@echo "... baseFunc.s"

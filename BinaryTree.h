@@ -372,11 +372,11 @@ public:
         return res;
     }
 
-    T Reduce(T(*func)(T))
+    T Reduce(T(*func)(T, T), T item)
     {
         ArraySequence<T> arr;
         In_Str(root,&arr,1,2,3);
-        T res = arr.Reduce(func);
+        T res = arr.Reduce(func, item);
         return res;
     }
 

@@ -169,8 +169,8 @@ public:
     }
 
     template<class U>
-    U Reduce(U (*func)(T item1, T item2)) {
-        return dynamicArray.Reduce(func);
+    U Reduce(U (*func)(T item1, T item2), T item) {
+        return dynamicArray.Reduce(func,item);
     }
 
     ArraySequence<T>* Where(bool(*func)(T))

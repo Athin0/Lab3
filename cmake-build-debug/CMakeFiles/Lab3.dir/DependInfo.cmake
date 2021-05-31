@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.cpp" "/cygdrive/c/Users/arina/CLionProjects/Lab3/cmake-build-debug/CMakeFiles/Lab3.dir/BinaryTree.cpp.o"
+  "/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.cpp" "/cygdrive/c/Users/arina/CLionProjects/Lab3/cmake-build-debug/CMakeFiles/Lab3.dir/Test.cpp.o"
   "/cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.cpp" "/cygdrive/c/Users/arina/CLionProjects/Lab3/cmake-build-debug/CMakeFiles/Lab3.dir/baseFunc.cpp.o"
   "/cygdrive/c/Users/arina/CLionProjects/Lab3/main.cpp" "/cygdrive/c/Users/arina/CLionProjects/Lab3/cmake-build-debug/CMakeFiles/Lab3.dir/main.cpp.o"
   "/cygdrive/c/Users/arina/CLionProjects/Lab3/menuTree.cpp" "/cygdrive/c/Users/arina/CLionProjects/Lab3/cmake-build-debug/CMakeFiles/Lab3.dir/menuTree.cpp.o"

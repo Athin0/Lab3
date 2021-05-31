@@ -6,10 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.cpp
-BinaryTree.h
-/cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.h
-
 /cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.h
 iostream
 -
@@ -33,6 +29,20 @@ DynamicArray.cpp
 /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArray.cpp
 
 /cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
+
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.cpp
+Test.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
+iostream
+/cygdrive/c/Users/arina/CLionProjects/Lab3/iostream
+random
+/cygdrive/c/Users/arina/CLionProjects/Lab3/random
+BinaryTree.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.h
+
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
+ctime
+/cygdrive/c/Users/arina/CLionProjects/Lab3/ctime
 
 /cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.h
 random
@@ -69,6 +79,8 @@ DynamicArraySequence.h
 /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArraySequence.h
 baseFunc.h
 /cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.h
+Test.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
 
 /cygdrive/c/Users/arina/CLionProjects/Lab3/menuTree.h
 complex

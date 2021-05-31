@@ -23,6 +23,13 @@ private:
     size_t size=0;
 public:
     class IndexOutOfRange {
+    private:
+        int length;
+        int index;
+    public:
+        IndexOutOfRange(int length, int index) : length(length), index(index) {};
+
+        IndexOutOfRange() : length(-1), index(-1) {};
     };
 
     DynamicArray();
@@ -89,11 +96,12 @@ public:
     }
 
     template<class U>
-    T Reduce(U (*func)(T item1, T item2)) {
-        if (size < 2) throw IndexOutOfRange(size, 1);
+    T Reduce(U (*func)(T item1, T item2), T item) {
+        if (size < 2)
+            throw IndexOutOfRange(size, 1);
 
-        auto res = func(arr[0], arr[1]);
-        for (int i = 2; i < size; i++) {
+        auto res = item;
+        for (int i = 0; i < size; i++) {
             res = func(res, arr[i]);
         }
         return res;

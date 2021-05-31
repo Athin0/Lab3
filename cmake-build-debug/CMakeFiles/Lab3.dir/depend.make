@@ -8,6 +8,14 @@ CMakeFiles/Lab3.dir/BinaryTree.cpp.o: ../DynamicArray.h
 CMakeFiles/Lab3.dir/BinaryTree.cpp.o: ../DynamicArraySequence.h
 CMakeFiles/Lab3.dir/BinaryTree.cpp.o: ../Sequence.h
 
+CMakeFiles/Lab3.dir/Test.cpp.o: ../BinaryTree.h
+CMakeFiles/Lab3.dir/Test.cpp.o: ../DynamicArray.cpp
+CMakeFiles/Lab3.dir/Test.cpp.o: ../DynamicArray.h
+CMakeFiles/Lab3.dir/Test.cpp.o: ../DynamicArraySequence.h
+CMakeFiles/Lab3.dir/Test.cpp.o: ../Sequence.h
+CMakeFiles/Lab3.dir/Test.cpp.o: ../Test.cpp
+CMakeFiles/Lab3.dir/Test.cpp.o: ../Test.h
+
 CMakeFiles/Lab3.dir/baseFunc.cpp.o: ../baseFunc.cpp
 CMakeFiles/Lab3.dir/baseFunc.cpp.o: ../baseFunc.h
 
@@ -25,6 +33,7 @@ CMakeFiles/Lab3.dir/menuTree.cpp.o: ../DynamicArray.cpp
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../DynamicArray.h
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../DynamicArraySequence.h
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../Sequence.h
+CMakeFiles/Lab3.dir/menuTree.cpp.o: ../Test.h
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../baseFunc.h
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../menuTree.cpp
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../menuTree.h

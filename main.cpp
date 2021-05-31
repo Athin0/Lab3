@@ -51,7 +51,7 @@ int main() {
     cout<< *t.Where(func) << endl;
     cout<< *t.Map(func3, 3) << endl;
     cout<< *t.Map(func3, 5) << endl;
-    //mainMenuBinaryTree();
+    mainMenuBinaryTree();
     return 0;
 }
 

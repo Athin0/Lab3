@@ -264,17 +264,16 @@ void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T> *> *arr) {
                 default:
                     break;
                 case 4:
-                    BinaryTree3 = new BinaryTree<T>;
-                    *BinaryTree3 = *BinaryTree1;
+                    BinaryTree3 = new BinaryTree<T>(*BinaryTree1);
                     arr->Append(BinaryTree3);
                     break;
                 case 6:
                     BinaryTree2 = arr->Get(item3);
-//                    int res = BinaryTree1->inTree(*BinaryTree2); TODO переделать
-//                    if (res)
-//                        cout << "Данное дерево является поддеревом!\n";
-//                    else
-//                        cout << "Данное поддерево не было найдено!\n";
+                    bool res = BinaryTree1->FindSubTree(*BinaryTree2);
+                    if (res)
+                        cout << "Данное дерево является поддеревом!\n";
+                    else
+                        cout << "Данное поддерево не было найдено!\n";
                     break;
             }
         } else {
@@ -284,31 +283,34 @@ void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T> *> *arr) {
                 default:
                     break;
                 case 1:
-                    cout << "Введите пару ключ/значение\n: ";
+                    cout << "Введите значение\n: ";
                     cin >>  element;
                     BinaryTree1->Insert( element);
-                    cout << "Пара ключ/значение было добавлено!\n";
+                    cout << "Значение было добавлено!\n";
                     break;
                 case 2:
-                    cout << "Введите ключ\n: ";
-//                    cin >> key;
-//                    try {
-//                        BinaryTree1->remove(key); TODO переделать
-//                        cout << "Данный ключ был удалён!\n";
-//                    }
-//                    catch (typename BinaryTree<T>::myInvalidKeyword error) {
-//                        cout << "Узла с таким ключом нет в дереве!\n";
-//                    }
+                    cout << "Введите значение\n: ";
+                    cin >> element;
+                    BinaryTree1->Remove(element);
+                    cout << "Данное значение было удалёно!\n";
+                    break;
                 case 3:
-                    cout << "Введите ключ\n: ";
-//                    cin >> key;  TODO переделать
-//                    try {
-//                        element = BinaryTree1->operator[](key);
-//                        cout << "По ключу \"" << key << "\" храниться \"" << element << "\".\n";
-//                    }
-//                    catch (typename BinaryTree<T>::myInvalidKeyword error) {
-//                        cout << "Узла с таким ключом нет в дереве!\n";
-//                    }
+                    cout << "Введите значение\n: ";
+                    cin >> element;
+
+                    if (BinaryTree1->Find(element))
+                        cout << "Данное значение находится в Дереве.\n";
+                    else{
+                        cout << "Данное значение НЕ находится в Дереве.\n";}
+                    break;
+                case 5:
+                    cout << "Введите значение\n: ";
+                    cin >> element;
+                    auto *res = BinaryTree1->SubTree(element);
+                    cout << "По значению \"" << element << "\" получено\"" << res->GetStrGreatTree() << "\".\n";
+                    arr->Append(res);
+                    break;
+
             }
         }
     }
@@ -361,24 +363,29 @@ void printTypeBinaryTree(ArraySequence<BinaryTree<T> *> *arr) {
             continue;
 
         if (item1 == 2) {
-//            cout << arr->Get(item)->strLikeList() << endl; TODO переделать
+            cout << *arr->Get(item) << endl;
             continue;
         }
+        while (true) {
+            cout << "В каком формате необходимо вывести дерево:\n"
+                    "\t1: лево\n"
+                    "\t2: корень\n"
+                    "\t3: право\n: "
+                    "\t0: Выход\n: ";
+            int First, Second, Third;
+            if((First = GetInt(0, 3)) == 0)
+                break;
+             Second = GetInt(1, 3);
+             Third = GetInt(1, 3);
 
-        cout << "Введите строку в формате: ...\"L\"...\"K\"...\"R\". "
-                "(например {L}(K)[R], буквы можно менять местами)\n";
+            if (First + Second + Third != 6 && First != Second) {
+                cout << "НЕВОЗМОЖНО!\n";
+                continue;
+            }
+            cout << arr->Get(item)->In_Str(First,Second,Third) << endl;
+            break;
+        }
 
-        string strFormat, strType;
-        cin >> strFormat;
-
-        cout << "Введите буквы \"K\" и \"D\" для вывода в строке ключа и значения соответственно"
-                "(можно обе буквы)\n";
-
-        cin >> strType;
-
-        cout << "\"" << item << "\" дерево:\n";
-
-        cout << arr->Get(item)->GetStr() << endl;
 
     } while (item >= 0);
 }

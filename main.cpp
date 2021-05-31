@@ -22,7 +22,7 @@ int main() {
     t.Insert(20);
     t.Insert(25);
     t.Insert(10);
-//    t.GetStr();
+//    t.GetStrGreatTree();
     t.Insert(30);
     t.Insert(11);
     t.Insert(31);
@@ -33,14 +33,15 @@ int main() {
 
     t.Insert(234);
     t.Insert(23);
-//    t.GetStr();
+//    t.GetStrGreatTree();
 //    BinaryTree<int> *a;
-    t.Remove(20);
-//    t.GetStr();
-    t.Remove(25);
-//    t.GetStr();
-    t.Remove(30);
-    cout << t.GetStr();
+//    t.Remove(20);
+//    t.GetStrGreatTree();
+//    t.Remove(25);
+//    t.GetStrGreatTree();
+//    t.Remove(30);
+
+    cout << t.GetStrGreatTree();
     mainMenuBinaryTree();
     return 0;
 }
@@ -511,7 +512,7 @@ int main()
                              firsts.add_el(temps);
                          }
                      }
-                     firsts.GetStr();
+                     firsts.GetStrGreatTree();
                      cout<<"¬ведите начало: ";
                      cin>>start_index;
                      cout<<"¬ведите конец: ";

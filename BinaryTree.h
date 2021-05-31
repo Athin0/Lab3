@@ -145,7 +145,7 @@ Node();
             delete temp;
         }
 
-        root = root->balance();
+        node= node->balance();
         return node;
     }
 /*
@@ -156,7 +156,7 @@ Node();
         std::cout<<"/ \t";
         std::cout << node->data << " ";
         std::cout<<"\t|";
-        GetStr(node->right);
+        GetStrGreatTree(node->right);
         std::cout<<"\n";
     }
 */
@@ -190,6 +190,73 @@ Node();
             return node;
     };
 
+    void InsertNode(Node* node) {
+        if(node== nullptr){
+            return;
+        }
+        Insert(node->data);
+        InsertNode(node->left);
+        InsertNode(node->right);
+    }
+    bool FindSubTree(Node* node, Node* nodeFind) {
+        if(nodeFind== nullptr)
+            return true;
+        if (node== nullptr)
+            return false;
+        if(node->data != nodeFind->data)
+            return false;
+        return FindSubTree(node->left,nodeFind->left)&&
+               FindSubTree(node->right,nodeFind->right);
+    }
+
+    void In_Str(Node* ptr, ArraySequence<T>* res, int First, int Second, int Third)
+    { //Left=1 Root=2 Right=3
+        if(ptr==nullptr)
+            return;
+        switch (First)
+        {
+            default:
+                break;
+            case 1:
+                In_Str(ptr->left, res, First, Second, Third);
+                break;
+            case 2:
+                res->Append(ptr->data);
+                break;
+            case 3:
+                In_Str(ptr->right, res, First, Second, Third);
+                break;
+        }
+        switch (Second)
+        {
+            default:
+                break;
+            case 1:
+                In_Str(ptr->left, res, First, Second, Third);
+                break;
+            case 2:
+                res->Append(ptr->data);
+                break;
+            case 3:
+                In_Str(ptr->right, res, First, Second, Third);
+                break;
+        }
+        switch (Third)
+        {
+            default:
+                break;
+            case 1:
+                In_Str(ptr->left, res, First, Second, Third);
+                break;
+            case 2:
+                res->Append(ptr->data);
+                break;
+            case 3:
+                In_Str(ptr->right, res, First, Second, Third);
+                break;
+        }
+    }
+
 public:
 
     BinaryTree() {
@@ -200,6 +267,11 @@ public:
         root = nullptr;
         for(int i = 0; i < arraySequence.GetLength(); i++)
             Insert(arraySequence[i]);
+    }
+
+    BinaryTree(const BinaryTree<T>& binaryTree) {
+        root = nullptr;
+        InsertNode(binaryTree.root);
     }
 
     explicit BinaryTree(T item) {
@@ -213,8 +285,7 @@ public:
     }
 
     ~BinaryTree(){
-
-        root=DeleteNode(root);
+        DeleteNode(root);
     }
     void Insert(T item){
         root= Insert(root, item);
@@ -222,20 +293,50 @@ public:
     void Remove(T item){
         root = Remove(root,item);
     }
-    std::string GetStr(){
-        auto res = GetStr(root, 0);
+    std::string GetStrGreatTree(){
+        auto res = std::string("\n") + GetStr(root, 0);
         res += '\n';
         return res;
     }
-    void Find(T item){
-        Find(root,item);
+    bool Find(T item){
+        return Find(root,item);
+    }
+    BinaryTree* SubTree(T item){
+        auto* node = Find(root,item);
+        BinaryTree<T> tree;
+        tree.root = node;
+        auto *res = new BinaryTree<T>(tree);
+        tree.root = nullptr;
+        return res;
+    }
+    bool FindSubTree(const BinaryTree<T>& binaryTree) {
+        if(binaryTree.root == nullptr)
+            return true;
+
+        auto *node = Find(root, binaryTree.root->data);
+        if(node== nullptr)
+            return false;
+        else
+            return true;
     }
 
+    std::string In_Str(int First, int Second, int Third) {
+        auto *resArr = new ArraySequence<T>;
+        In_Str(root,resArr,First,Second,Third);
+        std::string resStr("{");
+        for (int i = 0; i < resArr->GetLength(); i++) {
+            resStr+=std::to_string(resArr->Get(i));
+            if(i!=resArr->GetLength()-1)
+                resStr+=", ";
+        }
+        resStr+="}";
+        return resStr;
+    }
 };
 
 template<class T>
 std::ostream &operator<<(std::ostream &cout, BinaryTree<T> binaryTree) {
-    cout << binaryTree.GetStr();
+    cout << binaryTree.GetStrGreatTree();
     return cout;
 }
 

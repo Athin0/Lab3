@@ -54,6 +54,14 @@ public:
         return linkedlist.Get(index);
     }
 
+    T PopEnd() {
+        return linkedlist.PopEnd();
+    }
+
+    T PopFirst() {
+        return linkedlist.PopFirst();
+    }
+
     void Set(int index,T item) {
         if (index < 0 || index >= linkedlist.GetLength())
             throw IndexOutOfRange(linkedlist.GetLength(), index);

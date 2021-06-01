@@ -28,21 +28,29 @@ DynamicArray.h
 DynamicArray.cpp
 /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArray.cpp
 
-/cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Heap.h
+iostream
+-
+string
+-
+LinkedListSequence.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedListSequence.h
 
-/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.cpp
-Test.h
-/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedList.h
 iostream
 /cygdrive/c/Users/arina/CLionProjects/Lab3/iostream
-random
-/cygdrive/c/Users/arina/CLionProjects/Lab3/random
-BinaryTree.h
-/cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.h
+cstdlib
+/cygdrive/c/Users/arina/CLionProjects/Lab3/cstdlib
+iostream
+-
 
-/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
-ctime
-/cygdrive/c/Users/arina/CLionProjects/Lab3/ctime
+/cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedListSequence.h
+Sequence.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
+LinkedList.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedList.h
+
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
 
 /cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.h
 random
@@ -50,19 +58,25 @@ random
 complex
 /cygdrive/c/Users/arina/CLionProjects/Lab3/complex
 
-/cygdrive/c/Users/arina/CLionProjects/Lab3/menuTree.cpp
+/cygdrive/c/Users/arina/CLionProjects/Lab3/main.cpp
+iostream
+-
+algorithm
+-
+string
+-
 menuTree.h
 /cygdrive/c/Users/arina/CLionProjects/Lab3/menuTree.h
-iostream
-/cygdrive/c/Users/arina/CLionProjects/Lab3/iostream
+random
+-
+ctime
+-
+complex
+-
+Heap.h
+/cygdrive/c/Users/arina/CLionProjects/Lab3/Heap.h
 BinaryTree.h
 /cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.h
-DynamicArraySequence.h
-/cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArraySequence.h
-baseFunc.h
-/cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.h
-Test.h
-/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
 
 /cygdrive/c/Users/arina/CLionProjects/Lab3/menuTree.h
 complex

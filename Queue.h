@@ -35,6 +35,9 @@ public:
     {
         data = new BinaryTree<T>(other.data);
     }
+    ~Queue(){
+        delete data;
+    }
 
 
     void Insert(T data)
@@ -42,7 +45,7 @@ public:
         data->Insert(data);
     }
 
-    T get_max()
+    T GetMax()
     {
         ArraySequence<T> *r;
         r= data->GetValues();
@@ -50,7 +53,7 @@ public:
         return res;
     }
 
-    T get_min()
+    T GetMin()
     {
         ArraySequence<T> *r;
         r= data->GetValues();

@@ -61,9 +61,54 @@ public:
 
     T &operator[](int ind);
 
-    LinkedList<T> *GetSubList(int startIndex, int endIndex); //TODO возращаемый тип *
+    LinkedList<T> *GetSubList(int startIndex, int endIndex);
 
     LinkedList<T> *Concat(LinkedList<T> *list);
+
+    T PopEnd() {
+        if (head == nullptr)
+            throw IndexOutOfRange();
+        auto *elemLast = head;
+        if (len == 1) {
+            len = 0;
+            head = nullptr;
+            ending = nullptr;
+            T res = elemLast->data;
+            delete elemLast;
+            return res;
+        }
+
+        while (elemLast->next != ending) {
+            elemLast = elemLast->next;
+        }
+
+        T res = ending->data;
+        delete ending;
+        ending = elemLast;
+        len--;
+        return res;
+    }
+
+    T PopFirst() {
+        if (head == nullptr)
+            throw IndexOutOfRange();
+
+        if (len == 1) {
+            len = 0;
+            T res = head->data;
+            delete head;
+            head = nullptr;
+            ending = nullptr;
+            return res;
+        }
+
+        T res = head->data;
+        auto *del = head;
+        head = head->next;
+        delete del;
+        len--;
+        return res;
+    }
 
     void operator = (LinkedList<T> linkedList) {
         element *el = linkedList.head;
@@ -76,7 +121,7 @@ public:
     void operator = (LinkedList<T> *linkedList);
     void Delete();
 
-    friend std::ostream &operator<<(std::ostream &cout, LinkedList<T> linkedList) { //TODO убрать из класса
+    friend std::ostream &operator<<(std::ostream &cout, LinkedList<T> linkedList) {
         element *el = linkedList.head;
         cout << '{';
         while (el != nullptr) {
@@ -190,6 +235,8 @@ T LinkedList<T>::GetLast() {
 
     return ending->data;
 }
+
+
 
 template<class T>
 T LinkedList<T>::Get(int index) const {

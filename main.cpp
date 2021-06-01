@@ -9,7 +9,7 @@
 #include <random>
 #include <ctime>
 #include <complex>
-//#include "search_tree.h
+#include "Heap.h"
 #include "BinaryTree.h"
 using namespace std;
 
@@ -23,7 +23,26 @@ int func3(int k1, int k2) {
 }
 
 int main() {
-    mainMenuBinaryTree();
+        Heap<int> t;
+    t.Insert(15);
+    t.Insert(20);
+    t.Insert(25);
+    t.Insert(10);
+    t.Insert(30);
+    t.Insert(11);
+    t.Insert(31);
+    t.Insert(3);
+    t.Insert(34);
+    t.Insert(35);
+    t.Insert(38);
+    t.Insert(234);
+    t.Insert(23);
+    cout<<t<<endl;
+    cout << t.GetMax() << endl;
+    cout << t << endl;
+    cout << t.out_pair() << endl;
+
+    //mainMenuBinaryTree();
     return 0;
 }
 //    BinaryTree<int> t;
@@ -38,7 +57,6 @@ int main() {
 //    t.Insert(34);
 //    t.Insert(35);
 //    t.Insert(38);
-//
 //    t.Insert(234);
 //    t.Insert(23);
 

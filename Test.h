@@ -13,7 +13,9 @@ void testTree(int count, int debug);
 
 void testTreeInsert(int count, int debug);
 void testTreeDelete(int count, int debug);
+void testTreeFind(int count, int debug);
 
+void testTreeMap(int count, int debug);
 void testTreeReduce(int count, int debug);
 void testTreeFindSub(int count, int debug);
 

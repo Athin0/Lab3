@@ -81,6 +81,20 @@ private:
         return nullptr;
     }
 
+    Node* InsertNonBalance(Node* node, T x) {
+        if( node== nullptr){
+            node =new Node(x);
+            return node;
+        }
+
+        else if (x< node->data)
+            node->left= InsertNonBalance(node->left, x);
+        else if(x>node->data)
+            node->right= InsertNonBalance(node->right, x);
+
+        return node;
+    }
+
     Node* Insert(Node* node, T x){
         if( node== nullptr){
             node =new Node(x);
@@ -111,6 +125,7 @@ private:
         else
             return FindMin(node->left);
     }
+
     Node* FindMax(Node* node){
         if( node == nullptr)
             return nullptr;
@@ -143,8 +158,6 @@ private:
                 node=node->left;
             delete temp;
         }
-
-        node= node->balance();
         return node;
     }
 /*
@@ -161,7 +174,7 @@ private:
 */
 
 
-    std::string GetStr(Node* p,int level)
+    std::string GetStr(Node* p,int level) const
     {
         if (!p)
             return std::string();
@@ -177,14 +190,14 @@ private:
 
         return res;
     }
-    Node* Find(Node* node,T data){
+    Node* FindNode(Node* node, T data){
         if (node == nullptr){
             return nullptr;
         }
         else if (data<node->data)
-            return Find(node->left,data);
+            return FindNode(node->left, data);
         else if (data>node->data)
-            return Find(node->right,data);
+            return FindNode(node->right, data);
         else
             return node;
     };
@@ -193,10 +206,11 @@ private:
         if(node== nullptr){
             return;
         }
-        Insert(node->data);
+        root = InsertNonBalance(root, node->data);
         InsertNode(node->left);
         InsertNode(node->right);
     }
+
     bool FindSubTree(Node* node, Node* nodeFind) {
         if(nodeFind== nullptr)
             return true;
@@ -291,32 +305,35 @@ public:
     }
     void Remove(T item){
         root = Remove(root,item);
+        ArraySequence<T> arr;
+        In_Str(root,&arr,1,2,3);
+        auto* res=new BinaryTree<T>(arr);
+        DeleteNode(root);
+        root=res->root;
     }
-    std::string GetStrGreatTree(){
+    std::string GetStrGreatTree() const {
         auto res = std::string("\n") + GetStr(root, 0);
         res += '\n';
         return res;
     }
     bool Find(T item){
-        return Find(root,item);
+        return FindNode(root, item);
     }
     BinaryTree* SubTree(T item){
-        auto* node = Find(root,item);
-        BinaryTree<T> tree;
-        tree.root = node;
-        auto *res = new BinaryTree<T>(tree);
-        tree.root = nullptr;
+        auto* node = FindNode(root, item);
+//        BinaryTree<T> tree;
+//        tree.root = node;
+        auto *res = new BinaryTree<T>;
+        res->InsertNode(node);
+//        tree.root = nullptr;
         return res;
     }
     bool FindSubTree(const BinaryTree<T>& binaryTree) {
         if(binaryTree.root == nullptr)
             return true;
 
-        auto *node = Find(root, binaryTree.root->data);
-        if(node== nullptr)
-            return false;
-        else
-            return true;
+        auto *node = FindNode(root, binaryTree.root->data);
+        return FindSubTree(node, binaryTree.root);
     }
 
     std::string In_Str(int First, int Second, int Third) {
@@ -388,7 +405,7 @@ public:
 };
 
 template<class T>
-std::ostream &operator<<(std::ostream &cout, BinaryTree<T> binaryTree) {
+std::ostream &operator<<(std::ostream &cout, const BinaryTree<T>& binaryTree) {
     cout << binaryTree.GetStrGreatTree();
     return cout;
 }

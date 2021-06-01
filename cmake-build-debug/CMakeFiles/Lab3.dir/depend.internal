@@ -8,6 +8,18 @@ CMakeFiles/Lab3.dir/BinaryTree.cpp.o
  /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArray.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArraySequence.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
+CMakeFiles/Lab3.dir/MenuHeap.cpp.o
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArray.cpp
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArray.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArraySequence.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/Heap.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedList.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedListSequence.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/MenuHeap.cpp
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/MenuHeap.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/Test.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.h
 CMakeFiles/Lab3.dir/Test.cpp.o
  /cygdrive/c/Users/arina/CLionProjects/Lab3/BinaryTree.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/DynamicArray.cpp
@@ -27,6 +39,7 @@ CMakeFiles/Lab3.dir/main.cpp.o
  /cygdrive/c/Users/arina/CLionProjects/Lab3/Heap.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedList.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/LinkedListSequence.h
+ /cygdrive/c/Users/arina/CLionProjects/Lab3/MenuHeap.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/Sequence.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/baseFunc.h
  /cygdrive/c/Users/arina/CLionProjects/Lab3/main.cpp

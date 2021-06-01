@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Lab3.dir/BinaryTree.cpp.o"
+  "CMakeFiles/Lab3.dir/MenuHeap.cpp.o"
   "CMakeFiles/Lab3.dir/Test.cpp.o"
   "CMakeFiles/Lab3.dir/baseFunc.cpp.o"
   "CMakeFiles/Lab3.dir/main.cpp.o"

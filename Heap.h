@@ -8,10 +8,11 @@
 #include <iostream>
 #include <string>
 #include "LinkedListSequence.h"
+#include "DynamicArraySequence.h"
 
 using namespace std;
 
-template<typename T>
+template<class T>
 class Heap {
 private:
 
@@ -46,8 +47,7 @@ private:
 
         int size = data->GetLength();
         int index = 0;
-        int left, right;
-        while ((index < size) & (data->Get(index) != element))
+        while ((index < size) && (data->Get(index) != element))
             index++;
         if (index == size) {
             return -1;
@@ -67,8 +67,14 @@ public:
             Insert(*(item + i));
     }
 
-    Heap(Heap<T> &other) {
-        data = new LinkedListSequence<T>(other.data);
+    explicit Heap(const ArraySequence<T> &other) {
+        data = new LinkedListSequence<T>();
+        for (int i = 0; i < other.GetLength(); i++)
+            Insert(other.Get(i));
+    }
+
+    Heap(const Heap<T> &other) {
+        data = new LinkedListSequence<T>(*other.data);
     }
 
     ~Heap() {
@@ -84,16 +90,16 @@ public:
         if (left < HeapSize) {
             if (data->Get(i) < data->Get(left)) {
                 temp = data->Get(i);
-                data->Set(i, data->Get(left));
-                data->Set(left, temp);
+                data->Set(data->Get(left), i);
+                data->Set(temp, left);
                 Balance(left);
             }
         }
         if (right < HeapSize) {
             if (data->Get(i) < data->Get(right)) {
                 temp = data->Get(i);
-                data->Set(i, data->Get(right));
-                data->Set(right, temp);
+                data->Set(data->Get(right), i);
+                data->Set(temp, right);
                 Balance(right);
             }
         }
@@ -125,9 +131,9 @@ public:
     }
 
     std::string GetStr() {
-        return GetStr(0, 0);
+        return std::string("\n") + GetStr(0, 0);
     }
-    std::string out_pair()
+    std::string ListOfPairs()
     {
         int size= this->data->GetLength();
         int left, right;
@@ -156,6 +162,12 @@ public:
 
     bool Find(T element) {
         return FindIndex(element) != -1;
+    }
+
+    Heap<T>& operator = (const Heap<T>& heap) {
+        delete data;
+        data = new LinkedListSequence<T>(*heap.data);
+        return *this;
     }
 };
 

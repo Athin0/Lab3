@@ -169,6 +169,33 @@ BinaryTree.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/BinaryTree.cpp.s
 .PHONY : BinaryTree.cpp.s
 
+MenuHeap.o: MenuHeap.cpp.o
+
+.PHONY : MenuHeap.o
+
+# target to build an object file
+MenuHeap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/MenuHeap.cpp.o
+.PHONY : MenuHeap.cpp.o
+
+MenuHeap.i: MenuHeap.cpp.i
+
+.PHONY : MenuHeap.i
+
+# target to preprocess a source file
+MenuHeap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/MenuHeap.cpp.i
+.PHONY : MenuHeap.cpp.i
+
+MenuHeap.s: MenuHeap.cpp.s
+
+.PHONY : MenuHeap.s
+
+# target to generate assembly for a file
+MenuHeap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/MenuHeap.cpp.s
+.PHONY : MenuHeap.cpp.s
+
 Test.o: Test.cpp.o
 
 .PHONY : Test.o
@@ -289,6 +316,9 @@ help:
 	@echo "... BinaryTree.o"
 	@echo "... BinaryTree.i"
 	@echo "... BinaryTree.s"
+	@echo "... MenuHeap.o"
+	@echo "... MenuHeap.i"
+	@echo "... MenuHeap.s"
 	@echo "... Test.o"
 	@echo "... Test.i"
 	@echo "... Test.s"

@@ -31,9 +31,12 @@ public:
         linkedlist = LinkedList<T>(items, count);
     }
 
-//проверить
-    LinkedListSequence(const LinkedList<T> &list) {
+    explicit LinkedListSequence(const LinkedList<T> &list) {
         linkedlist = LinkedList<T>(list);
+    }
+
+    LinkedListSequence(const LinkedListSequence<T> &list) {
+        linkedlist = LinkedList<T>(list.linkedlist);
     }
 
     T GetFirst() {
@@ -62,7 +65,7 @@ public:
         return linkedlist.PopFirst();
     }
 
-    void Set(int index,T item) {
+    void Set(T item, int index) {
         if (index < 0 || index >= linkedlist.GetLength())
             throw IndexOutOfRange(linkedlist.GetLength(), index);
         return linkedlist.Set(index,item);

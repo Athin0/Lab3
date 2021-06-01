@@ -231,7 +231,7 @@ T LinkedList<T>::GetFirst() {
 template<class T>
 T LinkedList<T>::GetLast() {
     if (ending == nullptr)
-        throw IndexOutOfRange(len, len - 1); //обработка ошибки
+        throw IndexOutOfRange(len, len - 1);
 
     return ending->data;
 }

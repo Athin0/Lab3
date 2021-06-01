@@ -402,6 +402,13 @@ public:
         In_Str(root, arrRes, 1, 2, 3);
         return arrRes;
     }
+
+    BinaryTree<T>& operator = (const BinaryTree<T>& binaryTree) {
+        DeleteNode(root);
+        root = nullptr;
+        InsertNode(binaryTree.root);
+        return *this;
+    }
 };
 
 template<class T>

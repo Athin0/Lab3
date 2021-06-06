@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/Lab3.dir/Test.cpp.o"
   "CMakeFiles/Lab3.dir/baseFunc.cpp.o"
   "CMakeFiles/Lab3.dir/main.cpp.o"
+  "CMakeFiles/Lab3.dir/menuQueue.cpp.o"
   "CMakeFiles/Lab3.dir/menuTree.cpp.o"
   "Lab3.exe"
   "Lab3.pdb"

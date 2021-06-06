@@ -39,10 +39,23 @@ CMakeFiles/Lab3.dir/main.cpp.o: ../Heap.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../LinkedList.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../LinkedListSequence.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../MenuHeap.h
+CMakeFiles/Lab3.dir/main.cpp.o: ../Queue.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../Sequence.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../baseFunc.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../main.cpp
+CMakeFiles/Lab3.dir/main.cpp.o: ../menuQueue.h
 CMakeFiles/Lab3.dir/main.cpp.o: ../menuTree.h
+
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../BinaryTree.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../DynamicArray.cpp
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../DynamicArray.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../DynamicArraySequence.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../Queue.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../Sequence.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../Test.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../baseFunc.h
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../menuQueue.cpp
+CMakeFiles/Lab3.dir/menuQueue.cpp.o: ../menuQueue.h
 
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../BinaryTree.h
 CMakeFiles/Lab3.dir/menuTree.cpp.o: ../DynamicArray.cpp

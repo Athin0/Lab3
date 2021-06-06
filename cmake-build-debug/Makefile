@@ -277,6 +277,33 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+menuQueue.o: menuQueue.cpp.o
+
+.PHONY : menuQueue.o
+
+# target to build an object file
+menuQueue.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/menuQueue.cpp.o
+.PHONY : menuQueue.cpp.o
+
+menuQueue.i: menuQueue.cpp.i
+
+.PHONY : menuQueue.i
+
+# target to preprocess a source file
+menuQueue.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/menuQueue.cpp.i
+.PHONY : menuQueue.cpp.i
+
+menuQueue.s: menuQueue.cpp.s
+
+.PHONY : menuQueue.s
+
+# target to generate assembly for a file
+menuQueue.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Lab3.dir/build.make CMakeFiles/Lab3.dir/menuQueue.cpp.s
+.PHONY : menuQueue.cpp.s
+
 menuTree.o: menuTree.cpp.o
 
 .PHONY : menuTree.o
@@ -328,6 +355,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... menuQueue.o"
+	@echo "... menuQueue.i"
+	@echo "... menuQueue.s"
 	@echo "... menuTree.o"
 	@echo "... menuTree.i"
 	@echo "... menuTree.s"

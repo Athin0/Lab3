@@ -6,7 +6,6 @@
 #define LAB3_MENUHEAP_H
 #include <complex>
 #include <iostream>
-//#include "tests/test.h"
 #include "Heap.h"
 #include "DynamicArraySequence.h"
 #include "baseFunc.h"

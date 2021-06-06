@@ -177,7 +177,7 @@ public:
     {
         ArraySequence<T> *temp=new ArraySequence<T>();
         T data_t;
-        int len=GetLength();
+        int len= GetLength();
         for(int i=0;i<len;i++)
         {
             data_t=Get(i);

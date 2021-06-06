@@ -98,6 +98,9 @@
 		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/MenuHeap.h">
 			<Option target="Lab3"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/Queue.h">
+			<Option target="Lab3"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/Test.cpp">
 			<Option target="Lab3"/>
 		</Unit>
@@ -111,6 +114,12 @@
 			<Option target="Lab3"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/main.cpp">
+			<Option target="Lab3"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/menuQueue.cpp">
+			<Option target="Lab3"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/menuQueue.h">
 			<Option target="Lab3"/>
 		</Unit>
 		<Unit filename="/cygdrive/c/Users/arina/CLionProjects/Lab3/menuTree.cpp">

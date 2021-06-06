@@ -45,7 +45,7 @@ void testTree(int count, int debug) {
     testTreeDelete(count, debug);
     testTreeFind(count, debug);
 
-    testTreeMap(count, debug);
+//    testTreeMap(count, debug);
     testTreeReduce(count, debug);
     testTreeFindSub(count, debug);
 }
@@ -55,10 +55,10 @@ void testTreeInsert(int count, int debug) {
     if (debug)
         std::cout << "\tТестирование добавления в дерево:\n";
 
-    BinaryTree<int> binaryTree;
+    BinaryTree<int,int> binaryTree;
 
     for (i = 0; i < count/2; i++) {
-        binaryTree.Insert(i);
+        binaryTree.Insert(i,0);
         if (binaryTree.Find(i))
             passed++;
     }
@@ -79,10 +79,10 @@ void testTreeDelete(int count, int debug) {
     if (debug)
         std::cout << "\tТестирование удаления из дерева:\n";
 
-    BinaryTree<int> binaryTree;
+    BinaryTree<int,int> binaryTree;
 
     for (int i = 0; i < count; i++) {
-        binaryTree.Insert(i);
+        binaryTree.Insert(i,0);
     }
     for (int i = count-1; i >= 0; i--){
         binaryTree.Remove(i);
@@ -99,9 +99,9 @@ void testTreeFind(int count, int debug) {
     int passed = 0, i, k = 3;
     if (debug)
         std::cout << "\tТестирование поиска элемента в дереве:\n";
-    BinaryTree<int> binaryTree;
+    BinaryTree<int,int > binaryTree;
     for (i = 0; i < count/2; i++) {
-        binaryTree.Insert(i);
+        binaryTree.Insert(i,0);
         if (binaryTree.Find(i))
             passed++;
     }
@@ -115,7 +115,7 @@ void testTreeFind(int count, int debug) {
     if (debug)
         debugPrint(count, passed);
 }
-
+/*
 void testTreeMap(int count, int debug) {
     int passed = 0, maxSize = maxTreeSize;
     if (debug)
@@ -123,7 +123,7 @@ void testTreeMap(int count, int debug) {
     for (int i = 0; i < count; i++) {
         BinaryTree<int> binaryTree;
         for (int j = 0; j < maxSize; j++) {
-            binaryTree.Insert(j);
+            binaryTree.Insert(j,0);
         }
         auto *res = binaryTree.Map(Mult, 3);
 
@@ -140,19 +140,19 @@ void testTreeMap(int count, int debug) {
     if (debug)
         debugPrint(count, passed);
 }
-
+*/
 void testTreeReduce(int count, int debug) {
     int passed = 0, maxSize = maxTreeSize, maxVal = maxElem;
     if (debug)
         std::cout << "\tТестирование функции Reduce:\n";
     for (int i = 0; i < count; i++) {
-        BinaryTree<int> binaryTree;
+        BinaryTree<int, int> binaryTree;
         int sum = 0;
         for (int j = 0; j < maxSize; j++) {
             int val = getRandomInt(maxVal);
             if (!binaryTree.Find(val)) {
                 sum += val;
-                binaryTree.Insert(val);
+                binaryTree.Insert(val,0);
             }
         }
 
@@ -169,9 +169,9 @@ void testTreeFindSub(int count, int debug) {
     if (debug)
         std::cout << "\tТестирование поиска поддерева:\n";
     for (int i = 0; i < count; i++) {
-        BinaryTree<int> binaryTree;
+        BinaryTree<int,int> binaryTree;
         for (int j = 0; j < maxSize; j++) {
-            binaryTree.Insert(j);
+            binaryTree.Insert(j,0);
         }
 
         auto *subTree = binaryTree.SubTree(getRandomInt(maxSize));
@@ -181,7 +181,7 @@ void testTreeFindSub(int count, int debug) {
             continue;
         }
 
-        subTree->Insert(maxVal + 20);
+        subTree->Insert(maxVal + 20,0);
 
         if (!binaryTree.FindSubTree(*subTree))
             passed++;

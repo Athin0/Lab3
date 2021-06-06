@@ -25,11 +25,11 @@ void mainMenuHeap() {
     int item;
     while (true) {
         cout << "Программа имеет следующие возможности: \n"
-             << "\t1: Ввести и запомнить дерево\n"
-             << "\t2: Выполнить операцию над деревьями\n"
-             << "\t3: Вывести дерево в консоль\n"
-             << "\t4: Удалить или переместить деревья в памяти\n"
-             << "\t5: Запустить функцию тестирования деревьев\n"
+             << "\t1: Ввести и запомнить кучу\n"
+             << "\t2: Выполнить операцию над кучами\n"
+             << "\t3: Вывести чучу в консоль\n"
+             << "\t4: Удалить или переместить кучи в памяти\n"
+             << "\t5: Запустить функцию тестирования кучи\n"
              << "\t6: Закончить выполнение функции\n"
              << "Введите число: ";
         cin >> item;
@@ -77,7 +77,7 @@ void readHeap(ArraySequence<Heap<int> *> *intArr,
 
     int count = 0;
 
-    cout << "Введите колличество элементов дерева или -1 для выхода\n: ";
+    cout << "Введите колличество элементов кучи или -1 для выхода\n: ";
     do {
         if (count < 0) {
             cout << "Количество элементов не может быть отрицательным!\n: ";
@@ -91,10 +91,10 @@ void readHeap(ArraySequence<Heap<int> *> *intArr,
     auto item = GetType();
     if (item == 0) return;
 
-    cout << "Сгенерировать дерево автоматически или ввести вручную?:\n"
+    cout << "Сгенерировать кучу автоматически или ввести вручную?:\n"
             "\t0: выход\n"
-            "\t1: ввести дерево вручную\n"
-            "\t2: сгенерировать дерево\n: ";
+            "\t1: ввести кучу вручную\n"
+            "\t2: сгенерировать кучу\n: ";
 
     int item2 = GetInt(0, 2);
     if (item2 == 0) return;
@@ -125,7 +125,7 @@ void readHeap(ArraySequence<Heap<int> *> *intArr,
         }
     }
 
-    cout << "Хотите ввести ещё одно дерево?\n"
+    cout << "Хотите ввести ещё одну кучу?\n"
             "\t0 - нет\n"
             "\t1 - да\n: ";
 
@@ -137,7 +137,7 @@ void readHeap(ArraySequence<Heap<int> *> *intArr,
 
 template<class T>
 void readTypeHeap(ArraySequence<Heap<T> *> *arr, int count) {
-    cout << "Введите ключи и элементы дерева\n:";
+    cout << "Введите элементы кучи\n:";
 
     ArraySequence<T> elements;
     for (int i = 0; i < count; i++) {
@@ -147,7 +147,7 @@ void readTypeHeap(ArraySequence<Heap<T> *> *arr, int count) {
     }
     Heap<T> heap(elements);
     cout << "Вы ввели: " << heap
-         << "\nЗаписать это дерево? (1 - да, 0 - повторить попытку ввода, "
+         << "\nЗаписать эту кучу? (1 - да, 0 - повторить попытку ввода, "
          << "другое число приведёт к выходу их функции)\n:";
     int item;
     cin >> item;
@@ -173,10 +173,10 @@ void generateRandomHeap(ArraySequence<Heap<T> *> *arr, int count, T (*funcT)()) 
     }
     Heap<T> heap(elements);
     cout << "Сгенерировано:\n" << heap <<
-         "\nЗаписать или сгенерировать новое?\n"
+         "\nЗаписать или сгенерировать новую?\n"
          "\t-1: выход\n"
          "\t 0: сгенерировать новое\n"
-         "\t 1: записать дерево в память\n: ";
+         "\t 1: записать кучу в память\n: ";
     int item = GetInt(-1, 1);
     switch (item) {
         default:
@@ -211,7 +211,7 @@ void operationWithHeap(ArraySequence<Heap<int> *> *intArr,
 template<class T>
 void operationTypeWithHeap(ArraySequence<Heap<T> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких деревьев нет!\n";
+        cout << "Таких куч нет!\n";
         return;
     }
     int item;
@@ -219,10 +219,10 @@ void operationTypeWithHeap(ArraySequence<Heap<T> *> *arr) {
     while (true) {
         auto len = arr->GetLength();
         cout << "В памяти находится \"" << len <<
-             "\" деревьев, введите:\n"
+             "\" куч, введите:\n"
              "\t- число меньше нуля для выхода\n"
-             "\t- индекс дерева, для его выбора\n"
-             "\t- число, больше чем число элементов, для вывода всем деревьев\n: ";
+             "\t- индекс кучи, для его выбора\n"
+             "\t- число, больше чем число элементов, для вывода всех куч\n: ";
 
         item = GetInt();
         if (item < 0) break;
@@ -235,10 +235,10 @@ void operationTypeWithHeap(ArraySequence<Heap<T> *> *arr) {
         cout << "Вы выбрали: " << *arr->Get(item) << endl;
 
         cout << "Какую операцию необходимо выполнить:\n"
-                "\t0: выбрать другое кучу\n"
+                "\t0: выбрать другую кучу\n"
                 "\t1: добавить значение в кучу\n"
-                "\t2: удалить максимальный элемент из кучи\n"
-                "\t3: проверить на вхождение значения\n"
+                "\t2: найти и удалить максимальный элемент из кучи\n"
+                "\t3: проверить на вхождение значения в кучу\n"
                 "\t4: скопировать кучу\n: ";
 
         int item2 = GetInt(0, 4);
@@ -249,8 +249,8 @@ void operationTypeWithHeap(ArraySequence<Heap<T> *> *arr) {
 
         if (item2 == 4) {
             cout << "Введите:\n"
-                    "\t-1: для выбора другого дерева\n"
-                    "\t- индекс дерева для выполнения данной операции\n: ";
+                    "\t-1: для выбора другой кучи\n"
+                    "\t- индекс кучи для выполнения данной операции\n: ";
 
             int item3 = GetInt(-1, len - 1);
             if (item3 == -1) {
@@ -282,9 +282,9 @@ void operationTypeWithHeap(ArraySequence<Heap<T> *> *arr) {
                     cin >> element;
 
                     if (Heap1->Find(element))
-                        cout << "Данное значение находится в Дереве.\n";
+                        cout << "Данное значение находится в куче.\n";
                     else{
-                        cout << "Данное значение НЕ находится в Дереве.\n";}
+                        cout << "Данное значение НЕ находится в куче.\n";}
                     break;
             }
         }
@@ -312,16 +312,16 @@ void printHeap(ArraySequence<Heap<int> *> *intArr,
 template<class T>
 void printTypeHeap(ArraySequence<Heap<T> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких деревьев нет!";
+        cout << "Таких куч нет!";
         return;
     }
     int item;
     do {
         cout << "В памяти находится \"" << arr->GetLength() <<
-             "\" деревьев этого типа, введите:\n"
-             "\t- Индекс элемента для его вывода в консоль\n"
-             "\t- Число, больше чем количество деревьев для вывода всех"
-             " деревьев этого типа\n"
+             "\" куч этого типа, введите:\n"
+             "\t- Индекс элемента для её вывода в консоль\n"
+             "\t- Число, больше чем количество куч для вывода всех"
+             " куч этого типа\n"
              "\t- Число меньше нуля для выхода из функции\n:";
         item = GetInt();
 
@@ -369,7 +369,7 @@ void deleteHeap(ArraySequence<Heap<int> *> *intArr,
 template<class T>
 void deleteTypeHeap(ArraySequence<Heap<T> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких деревьев нет!\n";
+        cout << "Таких куч нет!\n";
         return;
     }
     int item;
@@ -377,13 +377,13 @@ void deleteTypeHeap(ArraySequence<Heap<T> *> *arr) {
     while (true) {
         int len = arr->GetLength();
         if (len == 0) {
-            cout << "Больше не осталось деревьев этого типа! Автоматический выход из функции\n";
+            cout << "Больше не осталось куч этого типа! Автоматический выход из функции\n";
             break;
         }
-        cout << "В памяти находится \"" << len << "\" деревьев, введите:\n"
+        cout << "В памяти находится \"" << len << "\" куч, введите:\n"
                                                   "\t- Число меньше нуля для выхода из функции\n"
                                                   "\t- Индекс элемента, для его выбора\n"
-                                                  "\t- Число, больше длины массива, для вывода деревьев в консоль\n: ";
+                                                  "\t- Число, больше длины массива, для вывода куч в консоль\n: ";
 
         item = GetInt();
 
@@ -413,7 +413,7 @@ void deleteTypeHeap(ArraySequence<Heap<T> *> *arr) {
             continue;
         }
 
-        cout << "Введите номер дерева, с которым надо поменять \""
+        cout << "Введите номер кучи, с которым надо поменять \""
              << item << "\" дерево\n: ";
 
         item2 = GetInt(0, len - 1);

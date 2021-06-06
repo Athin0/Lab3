@@ -1,10 +1,9 @@
 //
-// Created by arina on 31.05.2021.
+// Created by arina on 06.06.2021.
 //
-
-#include "menuTree.h"
+#include "menuQueue.h"
+#include "Queue.h"
 #include "iostream"
-#include "BinaryTree.h"
 #include "DynamicArraySequence.h"
 #include "baseFunc.h"
 #include "Test.h"
@@ -12,16 +11,16 @@
 using namespace std;
 
 template<class T, class K>
-void printArr(ArraySequence<BinaryTree<T, K> *> *arr) {
+void printArr(ArraySequence<Queue<T, K> *> *arr) {
     for (int i = 0; i < arr->GetLength(); i++) {
         cout << i << ": " << *arr->Get(i) << endl;
     }
     cout << endl;
 }
 
-void mainMenuBinaryTree() {
-    ArraySequence<BinaryTree<int,int> *> arrInt;
-    ArraySequence<BinaryTree<float, float> *> arrFloat;
+void mainMenuQueue() {
+    ArraySequence<Queue<int,int> *> arrInt;
+    ArraySequence<Queue<float, float> *> arrFloat;
     int item;
     while (true) {
         cout << "Программа имеет следующие возможности: \n"
@@ -43,19 +42,19 @@ void mainMenuBinaryTree() {
 
         switch (item) {
             case 1:
-                readBinaryTree(&arrInt, &arrFloat);
+                readQueue(&arrInt, &arrFloat);
                 break;
             case 2:
-                operationWithBinaryTree(&arrInt, &arrFloat);
+                operationWithQueue(&arrInt, &arrFloat);
                 break;
             case 3:
-                printBinaryTree(&arrInt, &arrFloat);
+                printQueue(&arrInt, &arrFloat);
                 break;
             case 4:
-                deleteBinaryTree(&arrInt, &arrFloat);
+                deleteQueue(&arrInt, &arrFloat);
                 break;
             case 5:
-                testFuncBinaryTree();
+                testFuncQueue();
                 break;
             default:
                 break;
@@ -72,8 +71,8 @@ void mainMenuBinaryTree() {
 }
 
 //1
-void readBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
-                    ArraySequence<BinaryTree<float, float> *> *floatArr) {
+void readQueue(ArraySequence<Queue<int,int> *> *intArr,
+                    ArraySequence<Queue<float, float> *> *floatArr) {
 
     int count = 0;
 
@@ -102,10 +101,10 @@ void readBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
     if (item2 == 1) {
         switch (item) {
             case 1:
-                readTypeBinaryTree<int>(intArr, count);
+                readTypeQueue<int>(intArr, count);
                 break;
             case 2:
-                readTypeBinaryTree<float>(floatArr, count);
+                readTypeQueue<float>(floatArr, count);
                 break;
             default:
                 break;
@@ -115,10 +114,10 @@ void readBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
     if (item2 == 2) {
         switch (item) {
             case 1:
-                generateRandomBinaryTree<int>(intArr, count, randomInt);
+                generateRandomQueue<int,int>(intArr, count, randomInt);
                 break;
             case 2:
-                generateRandomBinaryTree<float>(floatArr, count, randomFloat);
+                generateRandomQueue<float,float>(floatArr, count, randomFloat);
                 break;
             default:
                 break;
@@ -131,22 +130,28 @@ void readBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
 
     item = GetInt(0, 1);
     if (item) {
-        readBinaryTree(intArr, floatArr);
+        readQueue(intArr, floatArr);
     }
 }
 
 template<class T, class K>
-void readTypeBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr, int count) {
+void readTypeQueue(ArraySequence<Queue<T, K> *> *arr, int count) {
     cout << "Введите ключи и элементы дерева\n:";
-     
+
     ArraySequence<T> elements;
     for (int i = 0; i < count; i++) {
         T item;
         cin >>  item;
         elements.Append(item);
     }
-    BinaryTree<T, K> binaryTree(elements);
-    cout << "Вы ввели: " << binaryTree
+    ArraySequence<T> elementsVal;
+    for (int i = 0; i < count; i++) {
+        T item;
+        cin >>  item;
+        elementsVal.Append(item);
+    }
+    Queue<T, K> Queue0(elements,elementsVal);
+    cout << "Вы ввели: " << Queue0
          << "\nЗаписать это дерево? (1 - да, 0 - повторить попытку ввода, "
          << "другое число приведёт к выходу их функции)\n:";
     int item;
@@ -156,17 +161,17 @@ void readTypeBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr, int count) {
         default:
             break;
         case 0:
-            readTypeBinaryTree<T>(arr, count);
+            readTypeQueue<T>(arr, count);
             break;
         case 1:
-            arr->Append(new BinaryTree<T, K>(elements));
+            arr->Append(new Queue<T, K>(elements,elementsVal));
             break;
     }
 }
 
 template<class T, class K>
-void generateRandomBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr, int count, T (*funcT)()) {
-     
+void generateRandomQueue(ArraySequence<Queue<T, K> *> *arr, int count, T (*funcT)()) {
+
     ArraySequence<T> elements;
     for (int i = 0; i < count; i++) {
         elements.Append(funcT());
@@ -175,8 +180,8 @@ void generateRandomBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr, int count,
     for (int i = 0; i < count; i++) {
         elementsVal.Append(funcT());
     }
-    BinaryTree<T, K> binaryTree(elements, elementsVal);
-    cout << "Сгенерировано:\n" << binaryTree <<
+    Queue<T, K> Queue0(elements, elementsVal);
+    cout << "Сгенерировано:\n" << Queue0 <<
          "\nЗаписать или сгенерировать новое?\n"
          "\t-1: выход\n"
          "\t 0: сгенерировать новое\n"
@@ -186,34 +191,34 @@ void generateRandomBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr, int count,
         default:
             break;
         case 0:
-            generateRandomBinaryTree(arr, count,  funcT);
+            generateRandomQueue(arr, count,  funcT);
             break;
         case 1:
-            auto *res = new BinaryTree<T, K>(elements);
+            auto *res = new Queue<T,K>(elements,elementsVal);
             arr->Append(res);
             break;
     }
 }
 
 //2
-void operationWithBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
-                             ArraySequence<BinaryTree<float, float> *> *floatArr) {
+void operationWithQueue(ArraySequence<Queue<int,int> *> *intArr,
+                             ArraySequence<Queue<float, float> *> *floatArr) {
     int type = GetType();
 
     switch (type) {
         default:
             break;
         case 1:
-            operationTypeWithBinaryTree<int>(intArr);
+            operationTypeWithQueue<int>(intArr);
             break;
         case 2:
-            operationTypeWithBinaryTree<float>(floatArr);
+            operationTypeWithQueue<float>(floatArr);
             break;
     }
 }
 
 template<class T, class K>
-void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
+void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
         cout << "Таких деревьев нет!\n";
         return;
@@ -251,7 +256,7 @@ void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
 
         if (item2 == 0) continue;
 
-        auto *BinaryTree1 = arr->Get(item);
+        auto *Queue1 = arr->Get(item);
 
         if (item2 == 4 || item2 == 6) {
             cout << "Введите:\n"
@@ -263,18 +268,18 @@ void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
                 continue;
             }
 
-            BinaryTree<T, K> *BinaryTree2, *BinaryTree3;
+            Queue<T, K> *Queue2, *Queue3;
 
             switch (item2) {
                 default:
                     break;
                 case 4:
-                    BinaryTree3 = new BinaryTree<T, K>(*BinaryTree1);
-                    arr->Append(BinaryTree3);
+                    Queue3 = new Queue<T, K>(*Queue1);
+                    arr->Append(Queue3);
                     break;
                 case 6:
-                    BinaryTree2 = arr->Get(item3);
-                    bool res = BinaryTree1->FindSubTree(*BinaryTree2);
+                    Queue2 = arr->Get(item3);
+                    bool res = Queue1->FindSubSequence(*Queue2);
                     if (res)
                         cout << "Данное дерево является поддеревом!\n";
                     else
@@ -283,37 +288,40 @@ void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
             }
         } else {
             T element;
-
+            K value;
             switch (item2) {
                 default:
                     break;
                 case 1:
-                    cout << "Введите значение\n: ";
+                    cout << "Введите приоритет\n: ";
                     cin >>  element;
-                    BinaryTree1->Insert( element,0);
+                    cout << "Введите данные\n: ";
+                    cin >>  value;
+                    Queue1->Insert( element,value);
                     cout << "Значение было добавлено!\n";
                     break;
                 case 2:
                     cout << "Введите значение\n: ";
                     cin >> element;
-                    BinaryTree1->Remove(element);
+                    Queue1->Remove(element);
                     cout << "Данное значение было удалёно!\n";
                     break;
                 case 3:
                     cout << "Введите значение\n: ";
                     cin >> element;
 
-                    if (BinaryTree1->Find(element))
+                    if (Queue1->Find(element))
                         cout << "Данное значение находится в Дереве.\n";
                     else{
                         cout << "Данное значение НЕ находится в Дереве.\n";}
                     break;
-                case 5:
+                case 5:/*
                     cout << "Введите значение\n: ";
                     cin >> element;
-                    auto *res = BinaryTree1->SubTree(element);
-                    cout << "По значению \"" << element << "\" получено\"" << res->GetStrGreatTree() << "\".\n";
+                    auto *res = Queue1->FindSubSequence(element);               //TODO  сделать FindSubSequence
+                    cout << "По значению \"" << element << "\" получено\""  << "\".\n";
                     arr->Append(res);
+                    */
                     break;
 
             }
@@ -322,25 +330,25 @@ void operationTypeWithBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
 }
 
 //3
-void printBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
-                     ArraySequence<BinaryTree<float, float> *> *floatArr) {
+void printQueue(ArraySequence<Queue<int,int> *> *intArr,
+                     ArraySequence<Queue<float, float> *> *floatArr) {
     int type = GetType();
 
     switch (type) {
         default:
             break;
         case 1:
-            printTypeBinaryTree<int>(intArr);
+            printTypeQueue<int>(intArr);
             break;
         case 2:
-            printTypeBinaryTree<float>(floatArr);
+            printTypeQueue<float>(floatArr);
             break;
     }
 }
 
 
 template<class T, class K>
-void printTypeBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
+void printTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
         cout << "Таких деревьев нет!";
         return;
@@ -356,58 +364,30 @@ void printTypeBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
         item = GetInt();
 
         if (item < 0) break;
-
-        cout << "В каком формате необходимо вывести \"" << item << "\" дерево:\n"
-                                                                   "\t0: выбрать другое дерево\n"
-                                                                   "\t1: в формате произвольной строки\n"
-                                                                   "\t2: в виде дерева\n: ";
-
-        int item1 = GetInt(0, 2);
-
-        if (item1 == 0)
-            continue;
-
-        if (item1 == 2) {
-            cout << *arr->Get(item) << endl;
+        if (item >= arr->GetLength()) {
+            printArr(arr);
             continue;
         }
-        while (true) {
-            cout << "В каком формате необходимо вывести дерево:\n"
-                    "\t1: лево\n"
-                    "\t2: корень\n"
-                    "\t3: право\n: "
-                    "\t0: Выход\n: ";
-            int First, Second, Third;
-            if((First = GetInt(0, 3)) == 0)
-                break;
-             Second = GetInt(1, 3);
-             Third = GetInt(1, 3);
+        cout << *arr->Get(item) << endl;
 
-            if (First + Second + Third != 6 && First != Second) {
-                cout << "НЕВОЗМОЖНО!\n";
-                continue;
-            }
-            cout << arr->Get(item)->In_Str(First,Second,Third) << endl;
-            break;
-        }
 
 
     } while (item >= 0);
 }
 
 //4
-void deleteBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
-                      ArraySequence<BinaryTree<float, float> *> *floatArr) {
+void deleteQueue(ArraySequence<Queue<int,int> *> *intArr,
+                      ArraySequence<Queue<float, float> *> *floatArr) {
 
     auto item = GetType();
     if (item == 0) return;
 
     switch (item) {
         case 1:
-            deleteTypeBinaryTree(intArr);
+            deleteTypeQueue(intArr);
             break;
         case 2:
-            deleteTypeBinaryTree(floatArr);
+            deleteTypeQueue(floatArr);
             break;
         default:
             break;
@@ -415,7 +395,7 @@ void deleteBinaryTree(ArraySequence<BinaryTree<int,int> *> *intArr,
 }
 
 template<class T, class K>
-void deleteTypeBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
+void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
         cout << "Таких деревьев нет!\n";
         return;
@@ -466,15 +446,15 @@ void deleteTypeBinaryTree(ArraySequence<BinaryTree<T, K> *> *arr) {
 
         item2 = GetInt(0, len - 1);
         if (item != item2) {
-            BinaryTree<T, K> *BinaryTree = arr->Get(item);
+            Queue<T, K> *Queue0 = arr->Get(item);
             arr->Set(arr->Get(item2), item);
-            arr->Set(BinaryTree, item2);
+            arr->Set(Queue0, item2);
         }
     }
 }
 
 //5
-void testFuncBinaryTree() {
+void testFuncQueue() {
     cout << "Введите:\n"
             "\t- положительное число для ввода итераций тестов\n"
             "\t- нуль или отрицательное число для выхода\n: ";
@@ -482,12 +462,12 @@ void testFuncBinaryTree() {
     if (count <= 0)
         return;
 
-   test(count, 1);
+    test(count, 1);
 
     cout << "Хотите запустить тестирование ещё раз?\n"
             "\t0 - нет\n"
             "\t1 - да\n: ";
     count = GetInt(0, 1);
     if (count == 1)
-        testFuncBinaryTree();
+        testFuncQueue();
 }

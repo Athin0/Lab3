@@ -45,7 +45,7 @@ void testTree(int count, int debug) {
     testTreeDelete(count, debug);
     testTreeFind(count, debug);
 
-//    testTreeMap(count, debug);
+    testTreeMap(count, debug);
     testTreeReduce(count, debug);
     testTreeFindSub(count, debug);
 }
@@ -115,32 +115,31 @@ void testTreeFind(int count, int debug) {
     if (debug)
         debugPrint(count, passed);
 }
-/*
+
 void testTreeMap(int count, int debug) {
     int passed = 0, maxSize = maxTreeSize;
     if (debug)
         std::cout << "\tТестирование функции Map:\n";
     for (int i = 0; i < count; i++) {
-        BinaryTree<int> binaryTree;
+        BinaryTree<int,int> binaryTree;
         for (int j = 0; j < maxSize; j++) {
-            binaryTree.Insert(j,0);
+            binaryTree.Insert(j,j);
         }
         auto *res = binaryTree.Map(Mult, 3);
 
         int correct = 1;
         for (int j = 0; j < maxSize && correct; j++) {
-            if (!res->Find(j*3))
+            if ((res->GetValueKey(j)!= j*3))
                 correct = 0;
         }
         if (correct)
             passed++;
-
         delete res;
     }
     if (debug)
         debugPrint(count, passed);
 }
-*/
+
 void testTreeReduce(int count, int debug) {
     int passed = 0, maxSize = maxTreeSize, maxVal = maxElem;
     if (debug)
@@ -149,13 +148,13 @@ void testTreeReduce(int count, int debug) {
         BinaryTree<int, int> binaryTree;
         int sum = 0;
         for (int j = 0; j < maxSize; j++) {
+            int key = getRandomInt(maxVal);
             int val = getRandomInt(maxVal);
-            if (!binaryTree.Find(val)) {
+            if (!binaryTree.Find(key)) {
                 sum += val;
-                binaryTree.Insert(val,0);
+                binaryTree.Insert(key, val);
             }
         }
-
         int res = binaryTree.Reduce(Summ, 0);
         if (sum == res)
             passed++;

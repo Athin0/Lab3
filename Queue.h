@@ -120,24 +120,58 @@ public:
             cout << "Приоритет:" << key->Get(i) << " Данные:" << value->Get(i) << endl;
         }
     }
-
+/*
     bool FindSubSequence(Queue<T, K> &other) {
         BinaryTree<T, K> *d1 = data;
         BinaryTree<T, K> *d2 = other.data;
         return d1->FindSubTree(*d2);
     }
-    bool FindSubSequence0(Queue<T, K> &other) {
+*/
+    bool FindSubSequence(Queue<T, K> &other) {
+        ArraySequence<T> *d1 = other.data->GetKeyArray();
+        T startKey= d1->Get(0);
+        T endKey= d1->Get(d1->GetLength()-1);
+        auto *res = this->SubSequence(startKey, endKey+1);
+        if (res == nullptr )
+            return false;
+        ArraySequence<K> *dresval = res->data->GetValuesArray();
+        ArraySequence<K> *d1val = other.data->GetValuesArray();
+        if (dresval->GetLength() != d1val->GetLength())
+            return false;
+        for (int i=0; i<dresval->GetLength();i++){
+            if(dresval->Get(i) != d1val->Get(i))
+                return false;
+        }
+
         return true;
     }
 
 
-    Queue *SubSequence(int start, int end) {
+    Queue* SubSequence(T startKey, T endKey) {
+        if (startKey> endKey){
+            return new Queue<T,K>();
+        }
         ArraySequence<T> *d1 = data->GetKeyArray();
         ArraySequence<K> *d1val = data->GetValuesArray();
+        T start=-1;
+        T end=-1;
+        int i = 0;
+        while (i<d1->GetLength()){
+            if (d1->Get(i) >= startKey && start == -1)
+                start = i;
+            if (d1->Get(i) < endKey )
+                    end = i+1;
+            if (d1->Get(i) == endKey )
+                end = i;
+            i++;
+        }
+        if (start == -1){
+            return new Queue<T,K>();
+        }
         ArraySequence<T> *d2 = d1->GetSubSequence(start, end);
         ArraySequence<T> *d2val = d1val->GetSubSequence(start, end);
-        BinaryTree<T, K> *p = new BinaryTree<T, K>(d2, d2val);
-        Queue<T, K> *res = new Queue<T, K>(*p);
+        auto *p = new BinaryTree<T, K>(*d2, *d2val);
+        auto *res = new Queue<T, K>(*p);
         return res;
     }
 

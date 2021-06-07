@@ -385,7 +385,7 @@ public:
         root = new Node(item);
     }
 
-    BinaryTree(T *arr,K *arrVal, int len) {             //TODO самый важный конструкор
+    BinaryTree(T *arr,K *arrVal, int len) {                                                          // самый важный конструкор
         root = nullptr;
         for (int i = 0; i < len; i++)
             Insert(i[arr], i[arrVal]);

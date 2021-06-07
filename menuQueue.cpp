@@ -24,11 +24,11 @@ void mainMenuQueue() {
     int item;
     while (true) {
         cout << "Программа имеет следующие возможности: \n"
-             << "\t1: Ввести и запомнить дерево\n"
-             << "\t2: Выполнить операцию над деревьями\n"
-             << "\t3: Вывести дерево в консоль\n"
-             << "\t4: Удалить или переместить деревья в памяти\n"
-             << "\t5: Запустить функцию тестирования деревьев\n"
+             << "\t1: Ввести и запомнить очередь\n"
+             << "\t2: Выполнить операцию над очередями\n"
+             << "\t3: Вывести очередь в консоль\n"
+             << "\t4: Удалить или переместить очереди в памяти\n"
+             << "\t5: Запустить функцию тестирования очередей\n"
              << "\t6: Закончить выполнение функции\n"
              << "Введите число: ";
         cin >> item;
@@ -76,7 +76,7 @@ void readQueue(ArraySequence<Queue<int,int> *> *intArr,
 
     int count = 0;
 
-    cout << "Введите колличество элементов дерева или -1 для выхода\n: ";
+    cout << "Введите колличество элементов очереди или -1 для выхода\n: ";
     do {
         if (count < 0) {
             cout << "Количество элементов не может быть отрицательным!\n: ";
@@ -90,10 +90,10 @@ void readQueue(ArraySequence<Queue<int,int> *> *intArr,
     auto item = GetType();
     if (item == 0) return;
 
-    cout << "Сгенерировать дерево автоматически или ввести вручную?:\n"
+    cout << "Сгенерировать очередь автоматически или ввести вручную?:\n"
             "\t0: выход\n"
-            "\t1: ввести дерево вручную\n"
-            "\t2: сгенерировать дерево\n: ";
+            "\t1: ввести очередь вручную\n"
+            "\t2: сгенерировать очередь\n: ";
 
     int item2 = GetInt(0, 2);
     if (item2 == 0) return;
@@ -124,7 +124,7 @@ void readQueue(ArraySequence<Queue<int,int> *> *intArr,
         }
     }
 
-    cout << "Хотите ввести ещё одно дерево?\n"
+    cout << "Хотите ввести ещё одну очередь?\n"
             "\t0 - нет\n"
             "\t1 - да\n: ";
 
@@ -136,7 +136,7 @@ void readQueue(ArraySequence<Queue<int,int> *> *intArr,
 
 template<class T, class K>
 void readTypeQueue(ArraySequence<Queue<T, K> *> *arr, int count) {
-    cout << "Введите ключи и элементы дерева\n:";
+    cout << "Введите ключи и элементы очереди\n:";
 
     ArraySequence<T> elements;
     for (int i = 0; i < count; i++) {
@@ -152,7 +152,7 @@ void readTypeQueue(ArraySequence<Queue<T, K> *> *arr, int count) {
     }
     Queue<T, K> Queue0(elements,elementsVal);
     cout << "Вы ввели: " << Queue0
-         << "\nЗаписать это дерево? (1 - да, 0 - повторить попытку ввода, "
+         << "\nЗаписать это очередь? (1 - да, 0 - повторить попытку ввода, "
          << "другое число приведёт к выходу их функции)\n:";
     int item;
     cin >> item;
@@ -185,7 +185,7 @@ void generateRandomQueue(ArraySequence<Queue<T, K> *> *arr, int count, T (*funcT
          "\nЗаписать или сгенерировать новое?\n"
          "\t-1: выход\n"
          "\t 0: сгенерировать новое\n"
-         "\t 1: записать дерево в память\n: ";
+         "\t 1: записать очередь в память\n: ";
     int item = GetInt(-1, 1);
     switch (item) {
         default:
@@ -220,7 +220,7 @@ void operationWithQueue(ArraySequence<Queue<int,int> *> *intArr,
 template<class T, class K>
 void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких деревьев нет!\n";
+        cout << "Таких очередей нет!\n";
         return;
     }
     int item;
@@ -228,10 +228,10 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
     while (true) {
         auto len = arr->GetLength();
         cout << "В памяти находится \"" << len <<
-             "\" деревьев, введите:\n"
+             "\" очередей, введите:\n"
              "\t- число меньше нуля для выхода\n"
-             "\t- индекс дерева, для его выбора\n"
-             "\t- число, больше чем число элементов, для вывода всем деревьев\n: ";
+             "\t- индекс очереди, для её выбора\n"
+             "\t- число, больше чем число элементов, для вывода всех очередей\n: ";
 
         item = GetInt();
         if (item < 0) break;
@@ -244,13 +244,13 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
         cout << "Вы выбрали: " << *arr->Get(item) << endl;
 
         cout << "Какую операцию необходимо выполнить:\n"
-                "\t0: выбрать другое дерево\n"
-                "\t1: добавить значение в дерево\n"
-                "\t2: удалить значение из дерева\n"
+                "\t0: выбрать другое очередь\n"
+                "\t1: добавить значение в очередь\n"
+                "\t2: удалить значение из очереди\n"
                 "\t3: проверить на вхождение значения\n"
-                "\t4: скопировать дерево\n"
-                "\t5: извлечь поддерева\n"
-                "\t6: проверить на вхождение поддерева\n: ";
+                "\t4: скопировать очередь\n"
+                "\t5: извлечь подочередь\n"
+                "\t6: проверить на вхождение подочереди\n: ";
 
         int item2 = GetInt(0, 6);
 
@@ -260,8 +260,8 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
 
         if (item2 == 4 || item2 == 6) {
             cout << "Введите:\n"
-                    "\t-1: для выбора другого дерева\n"
-                    "\t- индекс дерева для выполнения данной операции\n: ";
+                    "\t-1: для выбора другого очереди\n"
+                    "\t- индекс очереди для выполнения данной операции\n: ";
 
             int item3 = GetInt(-1, len - 1);
             if (item3 == -1) {
@@ -281,9 +281,9 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
                     Queue2 = arr->Get(item3);
                     bool res = Queue1->FindSubSequence(*Queue2);
                     if (res)
-                        cout << "Данное дерево является поддеревом!\n";
+                        cout << "Данное очередь является подочередью!\n";
                     else
-                        cout << "Данное поддерево не было найдено!\n";
+                        cout << "Данное подочередь не было найдено!\n";
                     break;
             }
         } else {
@@ -311,17 +311,21 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
                     cin >> element;
 
                     if (Queue1->Find(element))
-                        cout << "Данное значение находится в Дереве.\n";
+                        cout << "Данное значение находится в Очереди.\n";
                     else{
-                        cout << "Данное значение НЕ находится в Дереве.\n";}
+                        cout << "Данное значение НЕ находится в Очереди.\n";}
                     break;
-                case 5:/*
-                    cout << "Введите значение\n: ";
-                    cin >> element;
-                    auto *res = Queue1->FindSubSequence(element);               //TODO  сделать FindSubSequence
-                    cout << "По значению \"" << element << "\" получено\""  << "\".\n";
+                case 5:
+                    T start, end;
+                    cout << "Введите значение начала подпоследовательности\n: ";
+                    cin >> start;
+                    cout << "Введите значение конца подпоследовательности\n: ";
+                    cin >> end;
+                    auto *res = Queue1->SubSequence(start,end);
+                    cout << "Получено\""  << "\".\n";
+                    cout << *res  << "\".\n";
                     arr->Append(res);
-                    */
+
                     break;
 
             }
@@ -350,16 +354,16 @@ void printQueue(ArraySequence<Queue<int,int> *> *intArr,
 template<class T, class K>
 void printTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких деревьев нет!";
+        cout << "Таких очередей нет!";
         return;
     }
     int item;
     do {
         cout << "В памяти находится \"" << arr->GetLength() <<
-             "\" деревьев этого типа, введите:\n"
+             "\" очередей этого типа, введите:\n"
              "\t- Индекс элемента для его вывода в консоль\n"
-             "\t- Число, больше чем количество деревьев для вывода всех"
-             " деревьев этого типа\n"
+             "\t- Число, больше чем количество очередей для вывода всех"
+             " очередей этого типа\n"
              "\t- Число меньше нуля для выхода из функции\n:";
         item = GetInt();
 
@@ -397,7 +401,7 @@ void deleteQueue(ArraySequence<Queue<int,int> *> *intArr,
 template<class T, class K>
 void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких деревьев нет!\n";
+        cout << "Таких очередей нет!\n";
         return;
     }
     int item;
@@ -405,13 +409,13 @@ void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     while (true) {
         int len = arr->GetLength();
         if (len == 0) {
-            cout << "Больше не осталось деревьев этого типа! Автоматический выход из функции\n";
+            cout << "Больше не осталось очередей этого типа! Автоматический выход из функции\n";
             break;
         }
-        cout << "В памяти находится \"" << len << "\" деревьев, введите:\n"
+        cout << "В памяти находится \"" << len << "\" очередей, введите:\n"
                                                   "\t- Число меньше нуля для выхода из функции\n"
                                                   "\t- Индекс элемента, для его выбора\n"
-                                                  "\t- Число, больше длины массива, для вывода деревьев в консоль\n: ";
+                                                  "\t- Число, больше длины массива, для вывода очередей в консоль\n: ";
 
         item = GetInt();
 
@@ -441,8 +445,8 @@ void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
             continue;
         }
 
-        cout << "Введите номер дерева, с которым надо поменять \""
-             << item << "\" дерево\n: ";
+        cout << "Введите номер очереди, с которым надо поменять \""
+             << item << "\" очередь\n: ";
 
         item2 = GetInt(0, len - 1);
         if (item != item2) {

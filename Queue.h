@@ -74,7 +74,7 @@ public:
 
     K GetMax() {
         ArraySequence<T> *r;
-        r = data->GetValues();
+        r = data->GetValuesArray();
         T res = r->Get(r->GetLength() - 1);
         K resVal = data->GetValueKey(res);
         return resVal;
@@ -82,16 +82,22 @@ public:
 
     K GetMin() {
         ArraySequence<T> *r;
-        r = data->GetValues();
+        r = data->GetValuesArray();
         T res = r->Get(0);
         K resVal = data->GetValueKey(res);
         return resVal;
     }
 
 
-    Queue<T, K> *Map(T(*func)(T)) {
+    Queue<T, K> *Map(K(*func)(K)) {
         BinaryTree<T, K> *p1 = data->Map(func);
         Queue<T, K> *res = new Queue<T, K>(*p1);
+        return res;
+    }
+
+    Queue<T, K> *Map(K(*func)(K,K),K elem) {
+        BinaryTree<T, K> *p1 = data->Map(func,elem);
+        auto *res = new Queue<T, K>(*p1);
         return res;
     }
 

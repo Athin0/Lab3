@@ -466,7 +466,7 @@ void testFuncQueue() {
     if (count <= 0)
         return;
 
-    test(count, 1);
+    testQueue(count, 1);
 
     cout << "Хотите запустить тестирование ещё раз?\n"
             "\t0 - нет\n"

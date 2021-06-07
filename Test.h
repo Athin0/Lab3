@@ -20,4 +20,15 @@ void testTreeReduce(int count, int debug);
 void testTreeFindSub(int count, int debug);
 
 
+
+void testQueue(int count, int debug);
+
+void testQueueInsert(int count, int debug);
+void testQueueDelete(int count, int debug);
+void testQueueFind(int count, int debug);
+
+void testQueueMap(int count, int debug);
+void testQueueReduce(int count, int debug);
+void testQueueFindSub(int count, int debug);
+
 #endif //LAB3_TEST_H

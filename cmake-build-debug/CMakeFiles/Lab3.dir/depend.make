@@ -24,6 +24,7 @@ CMakeFiles/Lab3.dir/Test.cpp.o: ../BinaryTree.h
 CMakeFiles/Lab3.dir/Test.cpp.o: ../DynamicArray.cpp
 CMakeFiles/Lab3.dir/Test.cpp.o: ../DynamicArray.h
 CMakeFiles/Lab3.dir/Test.cpp.o: ../DynamicArraySequence.h
+CMakeFiles/Lab3.dir/Test.cpp.o: ../Queue.h
 CMakeFiles/Lab3.dir/Test.cpp.o: ../Sequence.h
 CMakeFiles/Lab3.dir/Test.cpp.o: ../Test.cpp
 CMakeFiles/Lab3.dir/Test.cpp.o: ../Test.h

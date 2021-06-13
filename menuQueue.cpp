@@ -136,22 +136,31 @@ void readQueue(ArraySequence<Queue<int,int> *> *intArr,
 
 template<class T, class K>
 void readTypeQueue(ArraySequence<Queue<T, K> *> *arr, int count) {
-    cout << "Введите ключи и элементы очереди\n:";
+    //cout << "Введите приоритет и его данные\n:";
 
-    ArraySequence<T> elements;
+    auto* Queue0 = new Queue<T, K> ();
     for (int i = 0; i < count; i++) {
-        T item;
-        cin >>  item;
-        elements.Append(item);
+        T item, itemVal;
+        cout << "Введите приоритет\n:";
+        cin >> item;
+        cout << "Введите его данные\n:";
+        cin >> itemVal;
+        Queue0->Insert(item, itemVal);
     }
+    /*
+    ArraySequence<T> elements;
     ArraySequence<T> elementsVal;
     for (int i = 0; i < count; i++) {
-        T item;
+        T item, itemVal;
         cin >>  item;
-        elementsVal.Append(item);
+        cin>> itemVal;
+        elements.Append(item);
+        elementsVal.Append(itemVal);
     }
+
     Queue<T, K> Queue0(elements,elementsVal);
-    cout << "Вы ввели: " << Queue0
+     */
+    cout << "Вы ввели: \n" << *Queue0
          << "\nЗаписать это очередь? (1 - да, 0 - повторить попытку ввода, "
          << "другое число приведёт к выходу их функции)\n:";
     int item;
@@ -164,7 +173,8 @@ void readTypeQueue(ArraySequence<Queue<T, K> *> *arr, int count) {
             readTypeQueue<T>(arr, count);
             break;
         case 1:
-            arr->Append(new Queue<T, K>(elements,elementsVal));
+            arr->Append(Queue0);
+            //arr->Append(new Queue<T, K>(elements,elementsVal));
             break;
     }
 }
@@ -241,13 +251,13 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
             continue;
         }
 
-        cout << "Вы выбрали: " << *arr->Get(item) << endl;
+        cout << "Вы выбрали:\n " << *arr->Get(item) << endl;
 
         cout << "Какую операцию необходимо выполнить:\n"
                 "\t0: выбрать другое очередь\n"
                 "\t1: добавить значение в очередь\n"
                 "\t2: удалить значение из очереди\n"
-                "\t3: проверить на вхождение значения\n"
+                "\t3: проверить на занятость приоритета\n"
                 "\t4: скопировать очередь\n"
                 "\t5: извлечь подочередь\n"
                 "\t6: проверить на вхождение подочереди\n: ";
@@ -260,7 +270,7 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
 
         if (item2 == 4 || item2 == 6) {
             cout << "Введите:\n"
-                    "\t-1: для выбора другого очереди\n"
+                    "\t-1: для выбора другой очереди\n"
                     "\t- индекс очереди для выполнения данной операции\n: ";
 
             int item3 = GetInt(-1, len - 1);
@@ -281,9 +291,9 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
                     Queue2 = arr->Get(item3);
                     bool res = Queue1->FindSubSequence(*Queue2);
                     if (res)
-                        cout << "Данное очередь является подочередью!\n";
+                        cout << "Данная очередь является подочередью!\n";
                     else
-                        cout << "Данное подочередь не было найдено!\n";
+                        cout << "Данной подочереди не было найдено!\n";
                     break;
             }
         } else {
@@ -293,7 +303,7 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
                 default:
                     break;
                 case 1:
-                    cout << "Введите приоритет\n: ";
+                    cout << "Введите значение приоритет\n: ";
                     cin >>  element;
                     cout << "Введите данные\n: ";
                     cin >>  value;
@@ -301,25 +311,25 @@ void operationTypeWithQueue(ArraySequence<Queue<T, K> *> *arr) {
                     cout << "Значение было добавлено!\n";
                     break;
                 case 2:
-                    cout << "Введите значение\n: ";
+                    cout << "Введите значение приоритета\n: ";
                     cin >> element;
                     Queue1->Remove(element);
                     cout << "Данное значение было удалёно!\n";
                     break;
                 case 3:
-                    cout << "Введите значение\n: ";
+                    cout << "Введите значение ключа\n: ";
                     cin >> element;
 
                     if (Queue1->Find(element))
-                        cout << "Данное значение находится в Очереди.\n";
+                        cout << "Данное значение приоритета находится в Очереди.\n";
                     else{
-                        cout << "Данное значение НЕ находится в Очереди.\n";}
+                        cout << "Данное значение приоритета НЕ находится в Очереди.\n";}
                     break;
                 case 5:
                     T start, end;
-                    cout << "Введите значение начала подпоследовательности\n: ";
+                    cout << "Введите значение приоритета начала подпоследовательности\n: ";
                     cin >> start;
-                    cout << "Введите значение конца подпоследовательности\n: ";
+                    cout << "Введите значение приоритета конца подпоследовательности\n: ";
                     cin >> end;
                     auto *res = Queue1->SubSequence(start,end);
                     cout << "Получено\""  << "\".\n";
@@ -354,14 +364,14 @@ void printQueue(ArraySequence<Queue<int,int> *> *intArr,
 template<class T, class K>
 void printTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     if (arr->GetLength() == 0) {
-        cout << "Таких очередей нет!";
+        cout << "Таких очередей нет! \n";
         return;
     }
     int item;
     do {
         cout << "В памяти находится \"" << arr->GetLength() <<
              "\" очередей этого типа, введите:\n"
-             "\t- Индекс элемента для его вывода в консоль\n"
+             "\t- Индекс очереди для её вывода в консоль\n"
              "\t- Число, больше чем количество очередей для вывода всех"
              " очередей этого типа\n"
              "\t- Число меньше нуля для выхода из функции\n:";
@@ -409,7 +419,7 @@ void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
     while (true) {
         int len = arr->GetLength();
         if (len == 0) {
-            cout << "Больше не осталось очередей этого типа! Автоматический выход из функции\n";
+            cout << "Больше не осталось очередей этого типа!\n  Автоматический выход из функции\n";
             break;
         }
         cout << "В памяти находится \"" << len << "\" очередей, введите:\n"
@@ -426,7 +436,7 @@ void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
             continue;
         }
 
-        cout << "Выберите операцию:"
+        cout << "Выберите операцию:\n"
                 "\t-1: вернуться к выбору индекса\n"
                 "\t 0: для удаления элемента\n"
                 "\t 1: для перемещения элемента на другое место\n: ";
@@ -435,7 +445,7 @@ void deleteTypeQueue(ArraySequence<Queue<T, K> *> *arr) {
         if (item2 == -1) continue;
 
         if (item2 == 0) {
-            cout << "Вы действительно хотите удалить \"" << *arr->Get(item) << "\" ?\n"
+            cout << "Вы действительно хотите удалить\n \"" << *arr->Get(item) << "\" ?\n"
                                                                                "\t0 - нет\n"
                                                                                "\t1 - да\n: ";
             item2 = GetInt(0, 1);
